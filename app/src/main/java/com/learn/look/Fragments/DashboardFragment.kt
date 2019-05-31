@@ -1,7 +1,5 @@
 package com.learn.look.Fragments
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
@@ -59,10 +57,10 @@ class DashboardFragment : Fragment() {
         override fun getItem(position: Int): Fragment? {
             when(position) {
                 0 -> {
-                    return LatestFragment()
+                    return PopularMovieFragment()
                 }
                 1 -> {
-                    return TopRatedFragment()
+                    return TopRatedMovieFragment()
                 }
                 else -> return null
             }

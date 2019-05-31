@@ -3,12 +3,8 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".Fragments.TopRatedFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+             tools:context=".Fragments.TopRatedMovieFragment">
+    <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" android:background="#4CAF50"/>
-
+            android:layout_height="match_parent" android:id="@+id/top_rated_movie_list"/>
 </FrameLayout>

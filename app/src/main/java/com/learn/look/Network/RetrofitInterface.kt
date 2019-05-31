@@ -12,8 +12,9 @@ import retrofit2.http.Query
 
 interface RetrofitInterface {
 
-    @GET("movie/popular")
-    fun getMovieList(@Query("api_key") apiKey: String): Single<Response<MovieResponse>>
+    @GET("movie/{category}")
+    fun getMovieList(@Path("category") category: String,
+                     @Query("api_key") apiKey: String): Single<Response<MovieResponse>>
 
 
     @GET("movie/{movieId}")///movie/420817?

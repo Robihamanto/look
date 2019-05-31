@@ -25,30 +25,13 @@ import java.util.zip.Inflater
 
 class HomeFragment : Fragment() {
 
-    private lateinit var movieRecycleView : RecyclerView
-    lateinit var movieAdapter: MovieAdapter
 
-    private var homeViewModel: HomeViewModel = HomeViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestMovies()
+
     }
 
-    fun requestMovies() {
-        homeViewModel.getMovies().observe(this, Observer {
-            movieAdapter.movies = it!!
-            movieAdapter.notifyDataSetChanged()
-        })
-    }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view  = inflater.inflate(R.layout.fragment_home, container, false)
-        movieRecycleView = view.findViewById(R.id.home_movie_list) as RecyclerView
-        movieRecycleView.layoutManager = GridLayoutManager(context, 2)
-        movieAdapter = MovieAdapter()
-        movieRecycleView.adapter = movieAdapter
-        return view
-    }
 
 }
