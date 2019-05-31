@@ -7,11 +7,11 @@
 
     <ImageView
             android:layout_width="50dp"
-            android:layout_height="50dp" tools:srcCompat="@tools:sample/backgrounds/scenic[0]"
+            android:layout_height="50dp"
             android:id="@+id/movieDetailCompanyLogoImageView"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent" android:scaleType="fitCenter"/>
+            app:layout_constraintTop_toTopOf="parent" android:scaleType="fitCenter" app:srcCompat="@drawable/no_image"/>
     <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
