@@ -16,7 +16,7 @@ import com.learn.look.R
 class PopularMovieFragment : Fragment() {
 
     private lateinit var movieRecycleView : RecyclerView
-    lateinit var movieAdapter: MovieAdapter
+    private lateinit var movieAdapter: MovieAdapter
 
     private var popularMovieViewModel: PopularMovieViewModel = PopularMovieViewModel()
 
@@ -25,7 +25,7 @@ class PopularMovieFragment : Fragment() {
         requestMovies()
     }
 
-    fun requestMovies() {
+    private fun requestMovies() {
         popularMovieViewModel.getMovies().observe(this, Observer {
             movieAdapter.movies = it!!
             movieAdapter.notifyDataSetChanged()

@@ -8,6 +8,7 @@ import com.learn.look.Model.Company
 import com.learn.look.R
 import com.learn.look.Utils.IMAGE_BASE_URL
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_movie_detail.*
 import kotlinx.android.synthetic.main.reycler_list_company.view.*
 
 class CompanyAdapter(var companies: List<Company>? = null) : RecyclerView.Adapter<CompanyAdapter.ViewHolder>() {
@@ -30,12 +31,13 @@ class CompanyAdapter(var companies: List<Company>? = null) : RecyclerView.Adapte
 
     inner class ViewHolder(itemView: View, company: Company? = null): RecyclerView.ViewHolder(itemView) {
 
-        val companyImageView = itemView.movieDetailCompanyLogoImageView
-        val companyName = itemView.movieDetailCompanyNameTextView
+        private val companyImageView = itemView.movieDetailCompanyLogoImageView
+        private val companyName = itemView.movieDetailCompanyNameTextView
 
         fun bindView(company: Company?) {
             Picasso.get()
                 .load("$IMAGE_BASE_URL${company?.logoPath}")
+                .placeholder(itemView.context.resources.getIdentifier("no_image", "drawable", itemView.context.packageName))
                 .into(companyImageView)
             companyName.text = company?.name
         }

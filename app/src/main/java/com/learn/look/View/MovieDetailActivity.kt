@@ -4,10 +4,6 @@ import android.arch.lifecycle.Observer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.text.Layout
-import android.view.View
-import android.view.ViewGroup
 import com.learn.look.Adapter.CompanyAdapter
 import com.learn.look.Adapter.MovieDetailViewModel
 import com.learn.look.Model.Movie
@@ -19,9 +15,9 @@ import kotlinx.android.synthetic.main.activity_movie_detail.*
 class MovieDetailActivity : AppCompatActivity() {
 
     companion object {
-        val MOVIE_DETAIL_ID_KEY = "MovieDetaiIdlKey"
-        val MOVIE_DETAIL_TITLE_KEY = "MovieDetailTitleKey"
-        val MOVIE_DETAIL_POPULARITY = "MovieDetailPopularity"
+        const val MOVIE_DETAIL_ID_KEY = "MovieDetaiIdlKey"
+        const val MOVIE_DETAIL_TITLE_KEY = "MovieDetailTitleKey"
+        const val MOVIE_DETAIL_POPULARITY = "MovieDetailPopularity"
     }
 
     private var movieDetailViewModel: MovieDetailViewModel = MovieDetailViewModel()
@@ -38,7 +34,7 @@ class MovieDetailActivity : AppCompatActivity() {
         requestDetailMovie(movieId)
     }
 
-    fun requestDetailMovie(movieId: Int) {
+    private fun requestDetailMovie(movieId: Int) {
         movieDetailViewModel.getMovie(movieId).observe(this, Observer {
             this.movie = it!!
             setupMovieUI()
@@ -50,22 +46,25 @@ class MovieDetailActivity : AppCompatActivity() {
     }
 
 
-    fun setupCompaniesList() {
+    private fun setupCompaniesList() {
         company_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         companyAdapter = CompanyAdapter()
         company_list.adapter = companyAdapter
     }
 
-    fun setupNavTitle() {
+    private fun setupNavTitle() {
         val navBarTitle = intent.getStringExtra(MOVIE_DETAIL_TITLE_KEY)
         val navBarSubTitle = intent.getDoubleExtra(MOVIE_DETAIL_POPULARITY, 0.0)
         supportActionBar?.title = navBarTitle
         supportActionBar?.subtitle = "Popularity : $navBarSubTitle"
     }
 
-    fun setupMovieUI() {
-        Picasso.get()
-            .load("https://image.tmdb.org/t/p/w500${movie?.posterPath}")
+    private fun setupMovieUI() {
+        val imageUrl = "https://image.tmdb.org/t/p/w500${movie?.posterPath}"
+        Picasso
+            .get()
+            .load(imageUrl)
+            .placeholder(this.resources.getIdentifier("no_image", "drawable", this.packageName))
             .into(movieDetailImageView)
         movieDetailTitleTextView.text           = movie?.title
         movieDetailOverviewTextView.text        = movie?.overview
@@ -75,7 +74,7 @@ class MovieDetailActivity : AppCompatActivity() {
                 "${getDuration(movie?.runtime ?: 0)}"//USA, 2019 / 2h 30 min
     }
 
-    fun getDuration(t: Int): String {
+    private fun getDuration(t: Int): String {
         val hours = t / 60 //since both are ints, you get an int
         val minutes = t % 60
         return "${hours}h ${minutes} min"
