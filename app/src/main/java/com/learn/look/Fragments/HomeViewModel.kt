@@ -4,13 +4,11 @@ import android.annotation.SuppressLint
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import android.content.Context
-import android.database.Observable
-import android.support.annotation.MainThread
 import android.util.Log
-import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork
 import com.learn.look.Model.Movie
 import com.learn.look.Model.MovieResponse
+import com.learn.look.Model.Person
+import com.learn.look.Model.PersonResponse
 import com.learn.look.Network.RetrofitClient
 import com.learn.look.Network.RetrofitInterface
 import com.learn.look.Utils.API_KEY
@@ -21,11 +19,12 @@ import java.lang.Exception
 class HomeViewModel(): ViewModel() {
 
     val request = RetrofitClient.getRetrofitClient()?.create(RetrofitInterface::class.java)
+    val peopleData: MutableLiveData<List<Person>> = MutableLiveData()
     val movieData: MutableLiveData<List<Movie>> = MutableLiveData()
 
     @SuppressLint("CheckResult")
     fun getMovies(): LiveData<List<Movie>> {
-        request?.getMovieList("latest",API_KEY)
+        request?.getMovieList("popular", API_KEY)
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribe { response ->
@@ -33,7 +32,7 @@ class HomeViewModel(): ViewModel() {
                     try {
                         val movieResponse = response?.body() as MovieResponse
                         movieData.value = movieResponse.movies
-                        println("movies" + movieResponse.movies)
+                        println("movies : " + movieResponse.movies)
                     } catch (e: Exception) {
                         e.stackTrace
                     }
@@ -42,5 +41,24 @@ class HomeViewModel(): ViewModel() {
                 }
             }
         return movieData
+    }
+
+    @SuppressLint("CheckResult")
+    fun getPeople() : LiveData<List<Person>> {
+        request?.getPersonList("popular", API_KEY)
+            ?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribe { response ->
+                if (response.isSuccessful) {
+                    try {
+                        val personResponse = response?.body() as PersonResponse
+                        peopleData.value = personResponse.people
+                        println("people : " + personResponse.people)
+                    } catch (e: Exception) {
+                        print(e.stackTrace)
+                    }
+                }
+            }
+        return peopleData
     }
 }

@@ -1,46 +1,48 @@
 package com.learn.look.Adapter
 
 import android.content.Intent
-import android.content.res.Resources
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.learn.look.Model.Movie
 import com.learn.look.R
+import com.learn.look.Utils.IMAGE_BASE_URL
 import com.learn.look.View.MovieDetailActivity
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.recycler_list_movie.view.*
+import kotlinx.android.synthetic.main.recycler_list_movie_backdrop.view.*
 
-class MovieAdapter(var movies: List<Movie>? = null): RecyclerView.Adapter<MovieAdapter.ViewHolder>(){
+
+class MovieBackDropAdapter(var movies: List<Movie>? = null) : RecyclerView.Adapter<MovieBackDropAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
-        return  movies?.size ?: 0
+        return movies?.size ?: 0
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val movie = movies?.get(position)
+        holder.movie = movie
+        holder.bindView(movie)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val cellForRowAt = layoutInflater.inflate(R.layout.recycler_list_movie, parent, false)
-        return ViewHolder(cellForRowAt)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val movie = movies!!.get(position)
-        holder.movie = movie
-        holder.bindView(movie)
+        val cellForRow = layoutInflater.inflate(R.layout.recycler_list_movie_backdrop, parent,  false)
+        return ViewHolder(cellForRow)
     }
 
 
     inner class ViewHolder(itemView: View, var movie: Movie? = null): RecyclerView.ViewHolder(itemView) {
 
-        private val movieImageView = itemView.movieImageView
+        private val homeMovieBackdropImageView = itemView.homeMovieBackDropImageView
+        private val homeMovieBackdropTextView = itemView.homeMovieBackDropTextView
 
-        fun bindView(movie: Movie) {
+        fun bindView(movie: Movie?) {
+            val imageUrl = "$IMAGE_BASE_URL${movie?.backdropPath}"
             Picasso.get()
-                .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
-                .into(movieImageView)
-            movieImageView.layoutParams.height = Resources.getSystem().displayMetrics.heightPixels / 2
-            movieImageView.requestLayout()
+                .load(imageUrl)
+                .into(homeMovieBackdropImageView)
+            homeMovieBackdropTextView.text = movie?.title
         }
 
         init {

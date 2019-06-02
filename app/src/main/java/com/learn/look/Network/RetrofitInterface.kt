@@ -2,6 +2,7 @@ package com.learn.look.Network
 
 import com.learn.look.Model.Movie
 import com.learn.look.Model.MovieResponse
+import com.learn.look.Model.PersonResponse
 import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.Response
@@ -15,6 +16,10 @@ interface RetrofitInterface {
     @GET("movie/{category}")
     fun getMovieList(@Path("category") category: String,
                      @Query("api_key") apiKey: String): Single<Response<MovieResponse>>
+
+    @GET("person/{category}")
+    fun getPersonList(@Path("category") category: String,
+                     @Query("api_key") apiKey: String): Single<Response<PersonResponse>>
 
 
     @GET("movie/{movieId}")///movie/420817?

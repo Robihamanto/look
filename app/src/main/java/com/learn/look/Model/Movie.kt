@@ -44,7 +44,10 @@ data class Movie(
     var voteAverage: Double? = null,
 
     @SerializedName("popularity")
-    var popularity: Double? = null
+    var popularity: Double? = null,
+
+    @SerializedName("adult")
+    var isAdult: Boolean? = null
 )
 
 data class ProductionCountry (
@@ -69,6 +72,32 @@ data class Company (
 
     @SerializedName("origin_country")
     var originCountry: String? = null
+)
 
+data class PersonResponse (
+
+    @SerializedName("results")
+    var people: List<Person>? = null
+)
+
+data class Person(
+
+    @SerializedName("popularity")
+    var popularity: Double? = null,
+
+    @SerializedName("id")
+    var id: Int? = null,
+
+    @SerializedName("profile_path")
+    var profilePath: String? = null,
+
+    @SerializedName("known_for")
+    var knowFor: List<Movie>? = null,
+
+    @SerializedName("name")
+    var name: String? = null,
+
+    @SerializedName("release_date")
+    var releaseDate: String? = null
 
 )
