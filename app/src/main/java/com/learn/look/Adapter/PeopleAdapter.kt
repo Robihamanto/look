@@ -13,6 +13,10 @@ import kotlinx.android.synthetic.main.recycler_list_person.view.*
 
 class PeopleAdapter(var people: List<Person>? = null) : RecyclerView.Adapter<PeopleAdapter.ViewHolder>() {
 
+    fun isCompleteLoadData(completion: (Boolean) -> Unit) {
+        if (people?.size ?: 0 > 0) completion(true) else completion(false)
+    }
+
     override fun getItemCount(): Int {
         return people?.size ?: 0
     }

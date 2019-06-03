@@ -21,6 +21,10 @@ import com.bumptech.glide.request.RequestOptions
 
 class MovieBackDropAdapter(var movies: List<Movie>? = null) : RecyclerView.Adapter<MovieBackDropAdapter.ViewHolder>() {
 
+    fun isCompleteLoadData(completion: (Boolean) -> Unit) {
+        if (movies?.size ?: 0 > 0) completion(true) else completion(false)
+    }
+
     override fun getItemCount(): Int {
         return movies?.size ?: 0
     }

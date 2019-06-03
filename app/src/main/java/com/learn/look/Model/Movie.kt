@@ -6,6 +6,7 @@ data class MovieResponse (
 
     @SerializedName("results")
     var movies: List<Movie>? = null
+
 )
 
 data class Movie(

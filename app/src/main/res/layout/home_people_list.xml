@@ -5,11 +5,58 @@
                                              android:layout_width="match_parent"
                                              android:layout_height="wrap_content">
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_people_view_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            app:shimmer_duration="800"
+            tools:ignore="MissingConstraints" tools:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/home_people_list"
+            app:layout_constraintTop_toTopOf="@+id/home_people_list"
+            app:layout_constraintEnd_toEndOf="@+id/home_people_list"
+            app:layout_constraintStart_toStartOf="@+id/home_people_list">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+        >
+            <include layout="@layout/recycler_list_person_placeholder"
+                     android:layout_marginLeft="8dp"
+                     android:layout_height="60dp"
+                     android:layout_width="60dp"/>
+            <include layout="@layout/recycler_list_person_placeholder"
+                     android:layout_marginLeft="8dp"
+                     android:layout_height="60dp"
+                     android:layout_width="60dp"/>
+            <include layout="@layout/recycler_list_person_placeholder"
+                     android:layout_marginLeft="8dp"
+                     android:layout_height="60dp"
+                     android:layout_width="60dp"/>
+            <include layout="@layout/recycler_list_person_placeholder"
+                     android:layout_marginLeft="8dp"
+                     android:layout_height="60dp"
+                     android:layout_width="60dp"/>
+            <include layout="@layout/recycler_list_person_placeholder"
+                     android:layout_marginLeft="8dp"
+                     android:layout_height="60dp"
+                     android:layout_width="60dp"/>
+            <include layout="@layout/recycler_list_person_placeholder"
+                     android:layout_marginLeft="8dp"
+                     android:layout_height="60dp"
+                     android:layout_width="60dp"/>
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <android.support.v7.widget.RecyclerView
             android:layout_width="0dp"
             android:layout_height="70dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            android:id="@+id/home_people_list"/>
+            android:id="@+id/home_people_list" android:layout_marginTop="4dp" android:layout_marginBottom="4dp"/>
 </android.support.constraint.ConstraintLayout>
