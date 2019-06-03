@@ -158,8 +158,12 @@ class HomeAdapter(var people: List<Person>? = null, var companies: List<Company>
             homeMovieTextView.text = movie?.title
             homeOverviewMovieTextView.text = movie?.overview
             homeAdultMovieTextView.visibility = if (movie?.isAdult ?: false) View.VISIBLE else View.INVISIBLE
-            homeVoteMovieTextView.text = movie?.voteAverage.toString()
-            homeVoteMovieTextView.visibility = View.VISIBLE
+
+            val voteAverage = movie?.voteAverage.toString()
+            homeVoteMovieTextView.text = voteAverage
+            if (voteAverage != "null") {
+                homeVoteMovieTextView.setBackgroundResource(R.drawable.rounded_corner)
+            }
         }
 
         init {

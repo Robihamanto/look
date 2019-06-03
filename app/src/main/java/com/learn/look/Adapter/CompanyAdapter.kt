@@ -29,7 +29,7 @@ class CompanyAdapter(var companies: List<Company>? = null) : RecyclerView.Adapte
     }
 
 
-    inner class ViewHolder(itemView: View, company: Company? = null): RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         private val companyImageView = itemView.movieDetailCompanyLogoImageView
         private val companyName = itemView.movieDetailCompanyNameTextView

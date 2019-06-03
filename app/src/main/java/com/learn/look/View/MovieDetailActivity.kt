@@ -55,8 +55,8 @@ class MovieDetailActivity : AppCompatActivity() {
     private fun setupNavTitle() {
         val navBarTitle = intent.getStringExtra(MOVIE_DETAIL_TITLE_KEY)
         val navBarSubTitle = intent.getDoubleExtra(MOVIE_DETAIL_POPULARITY, 0.0)
-        supportActionBar?.title = navBarTitle
-        supportActionBar?.subtitle = "Popularity : $navBarSubTitle"
+//        supportActionBar?.title = navBarTitle
+//        supportActionBar?.subtitle = "Popularity : $navBarSubTitle"
     }
 
     private fun setupMovieUI() {

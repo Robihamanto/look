@@ -32,7 +32,7 @@ class PeopleAdapter(var people: List<Person>? = null) : RecyclerView.Adapter<Peo
         return ViewHolder(cellForRow)
     }
 
-    inner class ViewHolder(itemView: View, person: Person? = null): RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         private val homePersonImageView = itemView.homePersonImageView
 

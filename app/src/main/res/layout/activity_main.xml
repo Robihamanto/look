@@ -8,6 +8,8 @@
         android:layout_height="match_parent"
         tools:context=".View.MainActivity">
 
+    <include layout="@layout/toolbar_layout" android:id="@+id/home_toolbar"/>
+
     <android.support.design.widget.BottomNavigationView
             android:id="@+id/nav_view"
             android:layout_width="0dp"
